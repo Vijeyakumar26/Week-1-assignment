@@ -17,6 +17,53 @@
   - `npm run test-calculator`
 */
 
-class Calculator {}
+class Calculator {
+  constructor() {
+      this.result = 0;
+  }
 
-module.exports = Calculator;
+  add(num) {
+      this.result += num;
+  }
+
+  subtract(num) {
+      this.result -= num;
+  }
+
+  multiply(num) {
+      this.result *= num;
+  }
+
+  divide(num) {
+      if (num !== 0) {
+          this.result /= num;
+      } else {
+          throw new Error("Division by zero is not allowed.");
+      }
+  }
+
+  clear() {
+      this.result = 0;
+  }
+
+  getResult() {
+      return this.result;
+  }
+
+  calculate(input) {
+    input = input.replace(/\s+/g, '');
+    if (!/^[0-9+\-*/().]+$/.test(input)) {
+        throw new Error("Invalid characters in the expression.");
+    }
+      try {
+          this.result = eval(input);
+      } catch (error) {
+          throw new Error(`Error while evaluating the expression: ${error.message}`);
+      }
+  }
+}
+
+const calc = new Calculator();
+const input = "10 + 2 * (6 - (4 + 1) / 2) + 7";
+calc.calculate(input); 
+console.log("Result:", calc.getResult());  

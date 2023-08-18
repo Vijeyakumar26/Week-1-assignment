@@ -7,9 +7,22 @@
   Once you've implemented the logic, test your code by running
   - `npm run test-expenditure-analysis`
 */
+var transactions = [
+ { itemName : 'Mouse',  category : 'Electronics',  price : 800, timestamp :  Date.now()},
+ { itemName : 'Keyboard',  category : 'Electronics',  price : 10000, timestamp :  Date.now()},
+ { itemName : 'Pencil',  category : 'Stationary',  price : 800, timestamp :  Date.now()},
+ { itemName : 'Pen', category : 'Stationary', price : 2000, timestamp :  Date.now()},
+ { itemName : 'Bread', category : 'Food', price : 6000, timestamp :  Date.now()},
+ { itemName : 'Tomato', category : 'Vegetables', price : 5600, timestamp :  Date.now()}
+];
+
 
 function calculateTotalSpentByCategory(transactions) {
-  return [];
+  var categoryList = [];
+  for(var i = 0; i<transactions.length; i++){
+      categoryList.push(transactions[i].category,transactions[i].price);
+  }
+  return categoryList;
 }
-
+console.log(calculateTotalSpentByCategory(transactions));
 module.exports = calculateTotalSpentByCategory;
